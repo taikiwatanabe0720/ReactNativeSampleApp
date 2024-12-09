@@ -14,7 +14,7 @@ import {
   StyleSheet,
   Text,
   useColorScheme,
-  View,
+  View
 } from 'react-native';
 
 import {
@@ -24,6 +24,9 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import Button from  './src/components/Button';
+import StorybookUIRoot from './storybook';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -62,8 +65,11 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
+
+    if (true) {
+      return <StorybookUIRoot />
+    } else {
+    return <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
@@ -76,6 +82,15 @@ function App(): React.JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Button
+            text={'ButtonText'}
+            onPress={() => {
+              console.log('button pushed!');
+            }}
+            style={{
+              backgroundColor: isDarkMode ? Colors.black : "#555555",
+            }}
+          />
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
@@ -93,7 +108,8 @@ function App(): React.JSX.Element {
         </View>
       </ScrollView>
     </SafeAreaView>
-  );
+    }
+
 }
 
 const styles = StyleSheet.create({
